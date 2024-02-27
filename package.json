@@ -1,0 +1,14 @@
+{
+    "name": "threadmarket-web-app",
+    "version": "1.0.0",
+    "description": "An online clothing store project for Umpisa",
+    "main": "index.js",
+    "scripts": {
+        "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\" "
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "concurrently": "^8.2.2"
+    }
+}

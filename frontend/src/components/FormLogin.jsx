@@ -1,21 +1,26 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { useAuthenticateMutation } from "../store";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ImSpinner3 } from "react-icons/im";
+import { AuthContext } from "../auth/AuthProvider";
 
 function FormLogin() {
     const navigate = useNavigate();
+    const { login } = useContext(AuthContext);
+
     const {
         register,
         handleSubmit,
         reset,
         formState: { errors },
     } = useForm();
-    const results = "";
-    // const [authenticate, results] = useAuthenticateMutation();
-    // const handleAuthenticate = (data) => {
-    //     authenticate(data);
-    // };
+
+    const [authenticate, results] = useAuthenticateMutation();
+    const handleAuthenticate = (data) => {
+        authenticate(data);
+    };
     let loginErr = "";
 
     const navigateToHomePage = () => {
@@ -33,8 +38,8 @@ function FormLogin() {
     useEffect(() => {
         if (results.status === "fulfilled") {
             reset();
-            localStorage.setItem("userToken", results.data.token);
-            navigate("/dashboard");
+            login(results.data.token);
+            navigate("/home");
         }
     }, [results, reset]);
 
@@ -42,7 +47,7 @@ function FormLogin() {
         <form
             className="mt-12 overflow-auto rounded-lg bg-white/90 p-16 shadow-md lg:w-8/12 lg:rounded-none lg:p-0 lg:shadow-none"
             action=""
-            onSubmit={handleSubmit()}
+            onSubmit={handleSubmit(handleAuthenticate)}
         >
             <h1 className="login-title font-avernir-heavy">Welcome Back!</h1>
             <div className="group mb-6 flex flex-col">

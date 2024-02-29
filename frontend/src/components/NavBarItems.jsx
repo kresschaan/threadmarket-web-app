@@ -1,17 +1,34 @@
-import { MdMenu } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { FaCircleUser } from "react-icons/fa6";
+import { jwtDecode } from "jwt-decode";
+import { AuthContext } from "../auth/AuthProvider";
 
-function NavBarItems({ isLink }) {
+function NavBarItems() {
+    const { token, logout } = useContext(AuthContext);
     const navigate = useNavigate();
-    //const dispatch = useDispatch();
-
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    // const isRegistered = () => {
-    //     localStorage.setItem("isRegistered", false);
-    // };
+    useEffect(() => {
+        if (token) {
+            try {
+                const decodedToken = jwtDecode(token); // Decode the JWT token
+                const currentTime = Date.now() / 1000; // Convert current time to seconds
+                const expirationTime = currentTime + 5 * 60;
+                if (decodedToken.exp < expirationTime) {
+                    // Token has expired
+                    setIsLoggedIn("false");
+                    logout();
+                }
+            } catch (error) {
+                console.error("Error decoding JWT token:", error);
+                logout(); // Log out the user in case of decoding error
+            }
+        } else {
+            setIsLoggedIn("false");
+        }
+    }, [token]);
 
     const navToggle = () => {
         setIsMenuOpen((prevState) => !prevState);
@@ -21,12 +38,15 @@ function NavBarItems({ isLink }) {
         navigate(`/${section}`, { replace: true });
     };
 
+    const logoutHome = () => {
+        setIsLoggedIn(false);
+        logout();
+    };
+
+    console.log(isMenuOpen);
+
     return !isMenuOpen ? (
         <div className="nav-menu">
-            {/* <div className="md:hidden py-2 px-4">
-                <MdMenu className="h-12 w-12 text-white"></MdMenu>
-            </div> */}
-
             <div
                 id="menu-btn"
                 className={`mr-4 mt-2 h-12 w-12 text-white hover:cursor-pointer md:hidden ${
@@ -58,22 +78,31 @@ function NavBarItems({ isLink }) {
                 >
                     Sign Up
                 </div>
-                <div
-                    className="cursor-pointer pr-5 font-serif font-semibold hover:text-primary-5"
-                    onClick={() => checkNav("login")}
-                >
-                    Log In
-                </div>
+                {isLoggedIn ? (
+                    <div
+                        className="cursor-pointer pr-5 font-serif font-semibold hover:text-primary-5"
+                        onClick={() => checkNav("login")}
+                    >
+                        Log In
+                    </div>
+                ) : (
+                    <div
+                        className="cursor-pointer pr-5 font-serif font-semibold hover:text-primary-5"
+                        onClick={() => logoutHome()}
+                    >
+                        Log Out
+                    </div>
+                )}
             </div>
         </div>
     ) : (
-        <div className="absolute bottom-0 left-0 top-0 flex min-h-fit w-full flex-col self-end bg-black text-lg uppercase text-white">
-            <div className="flex flex-row justify-end px-4 py-2 md:hidden">
+        <div className="absolute bottom-0 left-0 top-0 flex min-h-fit w-full flex-col bg-black text-lg uppercase text-white">
+            <div className="flex flex-row justify-end px-4 py-2">
                 {/* <MdMenu className="h-12 w-12 text-white"></MdMenu> */}
 
                 <div
                     id="menu-btn"
-                    className={`mr-4 mt-2 h-12 w-12 text-white hover:cursor-pointer md:hidden ${
+                    className={`mr-4 mt-2 h-12 w-12 text-white hover:cursor-pointer ${
                         isMenuOpen ? "open" : ""
                     }`}
                     onClick={() => navToggle()}
@@ -103,12 +132,21 @@ function NavBarItems({ isLink }) {
                 >
                     Sign Up
                 </div>
-                <div
-                    className="cursor-pointer pr-5 font-serif font-semibold hover:text-primary-5"
-                    onClick={() => checkNav("login")}
-                >
-                    Log In
-                </div>
+                {isLoggedIn ? (
+                    <div
+                        className="cursor-pointer pr-5 font-serif font-semibold hover:text-primary-5"
+                        onClick={() => checkNav("login")}
+                    >
+                        Log In
+                    </div>
+                ) : (
+                    <div
+                        className="cursor-pointer pr-5 font-serif font-semibold hover:text-primary-5"
+                        onClick={() => logoutHome()}
+                    >
+                        Log Out
+                    </div>
+                )}
             </div>
         </div>
     );

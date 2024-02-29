@@ -1,11 +1,10 @@
-import { BiRightArrowAlt } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 
 function Feature() {
     const navigate = useNavigate();
 
-    const handleNav = () => {
-        navigate("/shop");
+    const handleNav = (section) => {
+        navigate(`/${section}`, { replace: true });
     };
 
     return (
@@ -62,7 +61,7 @@ function Feature() {
                 <div className="position relative mb-6 h-[800px] w-full border lg:m-4 lg:mb-0 lg:h-auto lg:w-4/12">
                     <img
                         className="h-full w-full object-cover"
-                        src="/images/products/shirts/shirt-main.jpg"
+                        src="/images/products/shirts/shirts-main.jpg"
                         alt="Shirts - Thread the Market"
                         draggable="false"
                         loading="lazy"
@@ -77,7 +76,7 @@ function Feature() {
             <div className="flex flex-row justify-center p-10 text-black">
                 <button
                     className="bottom-0 mb-8 h-16 w-72 border border-black"
-                    onClick={() => handleNav()}
+                    onClick={() => handleNav("shop")}
                 >
                     Shop Now
                 </button>

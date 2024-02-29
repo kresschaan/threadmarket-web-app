@@ -1,4 +1,12 @@
-function Work() {
+import { useNavigate } from "react-router-dom";
+
+function Collection() {
+    const navigate = useNavigate();
+
+    const handleNav = (section) => {
+        navigate(`/${section}`, { replace: true });
+    };
+
     return (
         <div className="py-10">
             <div className="collection-container">
@@ -22,7 +30,10 @@ function Work() {
                                 A workwear blazer that is perfect for formal
                                 events and casual styles.
                             </p>
-                            <div className="collection-shop-stack">
+                            <div
+                                className="collection-shop-stack hover:cursor-pointer"
+                                onClick={() => handleNav("shop")}
+                            >
                                 <p className="shop-item">SHOP THIS LOOK</p>
                             </div>
                         </div>
@@ -42,7 +53,10 @@ function Work() {
                                 outfit look amazing and great along with its
                                 heat tech.
                             </p>
-                            <div className="collection-shop-stack">
+                            <div
+                                className="collection-shop-stack hover:cursor-pointer"
+                                onClick={() => handleNav("shop")}
+                            >
                                 <p className="shop-item">SHOP THIS LOOK</p>
                             </div>
                         </div>
@@ -79,7 +93,10 @@ function Work() {
                                 Lifestyle work and workout joggers will make you
                                 comfy and stylish.
                             </p>
-                            <div className="collection-shop-stack">
+                            <div
+                                className="collection-shop-stack hover:cursor-pointer"
+                                onClick={() => handleNav("shop")}
+                            >
                                 <p className="shop-item">SHOP THIS LOOK</p>
                             </div>
                         </div>
@@ -90,4 +107,4 @@ function Work() {
     );
 }
 
-export default Work;
+export default Collection;

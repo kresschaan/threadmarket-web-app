@@ -1,4 +1,6 @@
 var express = require("express");
+const bcrypt = require("bcrypt");
+const crypto = require("crypto");
 var router = express.Router();
 const schemas = require("../models/schemas");
 const { ObjectId } = require("mongodb");
@@ -22,7 +24,17 @@ router.post("/create-user", async (req, res) => {
     try {
         const data = req.body;
 
-        const newUser = new schemas.Users(data);
+        const saltRounds = 10;
+        const hashedPassword = await bcrypt.hash(data.password, saltRounds);
+
+        const hashedData = {
+            ...data,
+            password: hashedPassword,
+        };
+
+        console.log(hashedData);
+
+        const newUser = new schemas.Users(hashedData);
         const saveUser = await newUser.save();
 
         if (data) {

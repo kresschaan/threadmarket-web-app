@@ -12,6 +12,8 @@ var logger = require("morgan");
 var usersAPI = require("./api/users");
 var productsAPI = require("./api/products");
 var ordersAPI = require("./api/orders");
+var paymentsAPI = require("./api/payment");
+var authenticationAPI = require("./api/authentication");
 
 var app = express();
 const port = process.env.PORT || 3010;
@@ -31,6 +33,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/api/users", usersAPI);
 app.use("/api/products", productsAPI);
 app.use("/api/orders", ordersAPI);
+app.use("/api/authenticate", authenticationAPI);
+app.use("/api/payment", paymentsAPI);
 
 mongoose
     .connect(mongoKeys)

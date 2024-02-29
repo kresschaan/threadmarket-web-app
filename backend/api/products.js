@@ -8,8 +8,6 @@ router.get("/", async (req, res) => {
     try {
         const products = schemas.Products;
 
-        console.log(products);
-
         const productsData = await products.find({}).exec();
 
         if (productsData) {

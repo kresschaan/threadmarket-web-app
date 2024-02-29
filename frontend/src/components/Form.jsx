@@ -1,10 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useAddUserMutation } from "../store/index";
 import { useNavigate } from "react-router-dom";
 import { ImSpinner3 } from "react-icons/im";
 
-function Form({ priceVal, planVal }) {
+function Form() {
     // const dispatch = useDispatch();
     const navigate = useNavigate();
     const {
@@ -13,32 +13,15 @@ function Form({ priceVal, planVal }) {
         reset,
         formState: { errors },
     } = useForm();
-    const addUserRes = "";
-    // const [addUser, addUserRes] = useAddUserMutation();
-
-    const [selectedPrice, setSelectedPrice] = useState(priceVal);
-    const [selectedPlan, setSelectedPlan] = useState(planVal);
-
-    // const handlePriceChange = (event) => {
-    //     setSelectedPrice(event.target.value);
-    // };
-
-    // const handlePlanChange = (event) => {
-    //     setSelectedPlan(event.target.value);
-    // };
+    const [addUser, addUserRes] = useAddUserMutation();
 
     // const isRegistered = () => {
     //     localStorage.setItem("isRegistered", true);
     // };
 
-    // const addAmount = (amount) => {
-    //     dispatch(setAmount(amount));
-    // };
-
-    // const handleAddUser = (data) => {
-    //     addAmount(parseInt(data.price));
-    //     addUser(data);
-    // };
+    const handleAddUser = (data) => {
+        addUser(data);
+    };
 
     // const navigateToSignIn = () => {
     //     navigate("/login");
@@ -48,19 +31,20 @@ function Form({ priceVal, planVal }) {
         navigate("/home");
     };
 
-    // useEffect(() => {
-    //     if (addUserRes.status === "fulfilled") {
-    //         reset();
-    //         // dispatch(openModal(true));
-    //         isRegistered();
-    //         navigate("/checkout");
-    //     }
-    // }, [addUserRes, reset]);
+    useEffect(() => {
+        if (addUserRes.status === "fulfilled") {
+            reset();
+            // dispatch(openModal(true));
+            // isRegistered();
+            navigate("/login");
+        }
+    }, [addUserRes, reset]);
 
     return (
         <form
             className="no-scrollbar w-9/12 overflow-auto rounded-lg bg-white/90 px-16 shadow-md md:mt-0 md:w-8/12 lg:rounded-none lg:p-0 lg:shadow-none"
             action=""
+            onSubmit={handleSubmit(handleAddUser)}
         >
             <div className="group my-4 flex flex-col pt-6 2xl:my-4 ">
                 <label className="form-label" htmlFor="username">
@@ -196,11 +180,11 @@ function Form({ priceVal, planVal }) {
                     autoComplete="on"
                     {...register("address", {
                         required: true,
-                        pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                        pattern: /^[a-zA-Z0-9\s,'.-]*$/i,
                     })}
                 ></input>
                 {errors.address && (
-                    <p className="form-error">Please enter a valid email.</p>
+                    <p className="form-error">Please enter a valid address.</p>
                 )}
             </div>
             <div className="flex flex-col ">

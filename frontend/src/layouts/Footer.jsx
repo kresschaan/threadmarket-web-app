@@ -1,3 +1,4 @@
+import React from "react";
 import FooterNav from "../components/FooterNav";
 import Social from "../components/Social";
 

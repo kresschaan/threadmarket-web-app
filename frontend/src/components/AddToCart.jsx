@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { FaShoppingCart, FaCheckCircle } from "react-icons/fa";

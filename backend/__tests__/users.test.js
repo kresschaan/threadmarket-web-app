@@ -1,5 +1,5 @@
 const request = require("supertest");
-const app = require("../app"); // Assuming app.js is in the root directory
+const app = require("../app");
 
 describe("Test the user routes", () => {
     test("It should respond with user data for GET /api/users", async () => {

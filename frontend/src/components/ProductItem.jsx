@@ -61,8 +61,7 @@ function ProductItem({
                 return (
                     <div
                         key={product._id}
-                        className="relative m-4 h-[570px] w-72 bg-white p-4 shadow-3xl hover:cursor-pointer"
-                        onClick={() => handleProductView(product._id)}
+                        className="relative m-4 h-[570px] w-72 bg-white p-4 shadow-3xl"
                     >
                         <img
                             className="w-[400px] h-[350px] object-cover"

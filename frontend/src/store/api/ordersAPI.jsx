@@ -19,13 +19,10 @@ const ordersApi = createApi({
                 },
             }),
             fetchOrdersByID: builder.query({
-                query: (order) => {
+                query: (orderId) => {
                     return {
-                        url: "/",
+                        url: `/orders/${orderId}`,
                         method: "GET",
-                        params: {
-                            orderId: order,
-                        },
                     };
                 },
             }),

@@ -30,8 +30,6 @@ function ProductItem({
         }
     }, [data]);
 
-    console.log(data);
-
     if (!isLoading) {
         sortedAndFilteredData = [...data];
 

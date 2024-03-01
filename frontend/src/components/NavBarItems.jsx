@@ -44,8 +44,6 @@ function NavBarItems() {
         logout();
     };
 
-    console.log(isMenuOpen);
-
     return !isMenuOpen ? (
         <div className="nav-menu">
             <div
@@ -63,18 +61,21 @@ function NavBarItems() {
             <div className="hidden justify-evenly p-10 text-sm text-white md:flex">
                 <div
                     className="cursor-pointer pr-5 font-serif font-semibold hover:text-primary-5"
+                    data-testid="navbar-items"
                     onClick={() => checkNav("home")}
                 >
                     Home
                 </div>
                 <div
                     className="cursor-pointer pr-5 font-serif font-semibold hover:text-primary-5"
+                    data-testid="navbar-items"
                     onClick={() => checkNav("shop")}
                 >
                     Shop
                 </div>
                 <div
                     className="cursor-pointer pr-5 font-serif font-semibold hover:text-primary-5"
+                    data-testid="navbar-items"
                     onClick={() => checkNav("register")}
                 >
                     Sign Up
@@ -82,6 +83,7 @@ function NavBarItems() {
                 {isLoggedIn ? (
                     <div
                         className="cursor-pointer pr-5 font-serif font-semibold hover:text-primary-5"
+                        data-testid="navbar-items"
                         onClick={() => checkNav("login")}
                     >
                         Log In
@@ -89,6 +91,7 @@ function NavBarItems() {
                 ) : (
                     <div
                         className="cursor-pointer pr-5 font-serif font-semibold hover:text-primary-5"
+                        data-testid="navbar-items"
                         onClick={() => logoutHome()}
                     >
                         Log Out
@@ -117,18 +120,21 @@ function NavBarItems() {
             <div className="space-y-3 py-24 pl-12">
                 <div
                     className="cursor-pointer pr-5 font-serif font-semibold hover:text-primary-5"
+                    data-testid="navbar-items"
                     onClick={() => checkNav("home")}
                 >
                     Home
                 </div>
                 <div
                     className="cursor-pointer pr-5 font-serif font-semibold hover:text-primary-5"
+                    data-testid="navbar-items"
                     onClick={() => checkNav("shop")}
                 >
                     Shop
                 </div>
                 <div
                     className="cursor-pointer pr-5 font-serif font-semibold hover:text-primary-5"
+                    data-testid="navbar-items"
                     onClick={() => checkNav("register")}
                 >
                     Sign Up
@@ -136,6 +142,7 @@ function NavBarItems() {
                 {isLoggedIn ? (
                     <div
                         className="cursor-pointer pr-5 font-serif font-semibold hover:text-primary-5"
+                        data-testid="navbar-items"
                         onClick={() => checkNav("login")}
                     >
                         Log In
@@ -143,6 +150,7 @@ function NavBarItems() {
                 ) : (
                     <div
                         className="cursor-pointer pr-5 font-serif font-semibold hover:text-primary-5"
+                        data-testid="navbar-items"
                         onClick={() => logoutHome()}
                     >
                         Log Out

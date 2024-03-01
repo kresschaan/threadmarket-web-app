@@ -23,8 +23,6 @@ function Success() {
         searchParams.get("id")
     );
 
-    console.log(data);
-
     const handleConfirm = () => {
         clearPersistedData();
         navigate("/shop");
@@ -46,7 +44,7 @@ function Success() {
             total,
             shipping,
             shippingOption,
-        } = data[0];
+        } = data;
 
         customerInfo = (
             <div className="w-full px-4 pb-14 font-pt-sans lg:px-20" action="">

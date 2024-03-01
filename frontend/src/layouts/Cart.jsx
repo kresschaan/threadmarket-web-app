@@ -1,3 +1,4 @@
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { PiPlusBold, PiMinusBold } from "react-icons/pi";
@@ -120,7 +121,7 @@ function Cart() {
                         <div className="flex w-full flex-row items-center justify-center text-center">
                             <div className="flex w-full flex-row lg:w-1/2">
                                 <button
-                                    className="w-full bg-primary-gray-2 p-4 text-white"
+                                    className="w-full bg-primary-gray-2 p-4"
                                     onClick={() => removeProd(data.id)}
                                 >
                                     REMOVE

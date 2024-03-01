@@ -1,5 +1,7 @@
 # Thread the Market App
 
+![Alt text](/thread-the-market.png?raw=true "Thread the Market")
+
 Disclaimer: The name used in this project, Thread the Market App, is purely fictional and does not relate to any existing brand or website. It is used solely for the purpose of this project, which is an online clothing store developed for Umpisa.
 
 ## Description
@@ -73,10 +75,29 @@ Backend
 3. Navigate to the backend directory on the terminal.
 4. Install dependencies using <code>npm install</code> or yarn install on the backend folder or directory.
 
-Running the Project
+Root Folder
 
 1. Go to the root of the project.
+2. Install dependencies using <code>npm install</code> or yarn install on the root folder or directory.
+
+## How to Run the Project:
+
+1. After installation and navigation to the root.
 2. Type and run the command <code>npm run dev</code> in the terminal.
+
+### Testing
+
+Endpoints are tested using Jest and Supertest for the APIs.
+
+Frontend
+
+1. Go to the frontend folder through the terminal.
+2. Type the command <code>npm test</code>
+
+Backend
+
+1. Go to the backend folder through the terminal.
+2. Type the command <code>npm test</code>
 
 ### How to Use
 
@@ -87,3 +108,17 @@ Running the Project
 ## Acknowledgements
 
 Thank you to the hiring managers and lead developers who has taken the time to review this project and provide feedback. Grateful and appreciate the opportunity.
+
+I extend my appreciation to the following photographers from Unsplash for providing the captivating images used in this project, all of which are available for free use:
+
+• Mark Adriane
+• Grailify
+• Avie Huff
+• Filipp Romanovski
+• Mediamodifier
+• Anomaly
+• Mohamad Khosravi
+• Brock Wegner
+• Jamie Street
+
+Their photographs have been utilized to enhance the visual presentation of this project.

@@ -1,4 +1,5 @@
 import React from "react";
+import "whatwg-fetch";
 import { render } from "@testing-library/react";
 import Register from "../../Register";
 import "@testing-library/jest-dom";

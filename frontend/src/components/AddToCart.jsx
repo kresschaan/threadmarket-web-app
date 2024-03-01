@@ -34,9 +34,17 @@ function AddToCart({ id, name, image, quantity, price }) {
             onClick={handleSubmit}
         >
             {isLoading ? (
-                <FaCheckCircle className="m-2" size={20}></FaCheckCircle>
+                <FaCheckCircle
+                    className="m-2"
+                    size={20}
+                    data-testid="check-circle-icon"
+                ></FaCheckCircle>
             ) : (
-                <FaShoppingCart className="m-2" size={20}></FaShoppingCart>
+                <FaShoppingCart
+                    className="m-2"
+                    size={20}
+                    data-testid="check-circle-icon"
+                ></FaShoppingCart>
             )}
             {isLoading ? "Adding.." : "Add to Cart"}
         </button>
